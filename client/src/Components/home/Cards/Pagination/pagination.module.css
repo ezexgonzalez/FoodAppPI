@@ -1,0 +1,26 @@
+
+.container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: grey;
+
+    height: 40px;
+
+}
+
+.button{
+
+    border: none;
+    color: white;
+    background-color:#DA0037;
+    margin:5px;
+    height: 30px;
+    width: 50px;
+    border-radius: 5px;
+
+
+
+
+}
