@@ -6,7 +6,7 @@ import tick from "./tick.png";
 
 export default function Card(props) {
     // acá va tu código
-  console.log(props.diets)
+  
 
 
 
@@ -20,10 +20,10 @@ export default function Card(props) {
             <div className={s.punctuation}>
               {
                 props.diets.map(d =>(
-                  <div>
-                      <span className={s.typeText}>{d}</span>
+                  <div key={d}>
+                      <span  className={s.typeText}>{d}</span>
                       <img className={s.tick} src={tick} alt="tick" />
-                  </div>
+                   </div>
                 ))
               }
               

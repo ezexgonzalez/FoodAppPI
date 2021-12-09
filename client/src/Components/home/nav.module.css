@@ -5,14 +5,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1f1e1e;
+    background-color: #171717;
 
 }
 
 
 .logo{
 
-    margin: 10px 70px 10px 10px;
+    margin: 10px 70px 10px 30px;
     padding: 0;
     width: 50px;
     height: 50px;

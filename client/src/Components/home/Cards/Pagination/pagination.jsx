@@ -48,7 +48,7 @@ export default function Pagination(props){
             
             />
 
-            <div>
+            <div className={s.buttonsContainer}>
                 <button className={s.button} onClick={start}>Start</button>
                 <button className={s.button} onClick={previusPage}>Prev</button>
                 <span>{page}</span>

@@ -1,27 +1,100 @@
 
 
+.container{
+
+   
+    
+    width: 100%;
+    
+
+}
+
 .select{
-    color: black;
+    color: white;
+    margin: 10px;
+    border: 1px solid grey;
+    background-color: #171717;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+
 }
 
 option{
-    color: black;
+    color: white;
 }
 
 .search{
 
     border: none;
-    margin-left: 10px;
     background-color: #171717;
     border: 1px solid grey;
-    height: 30px;
-    width: 250px;
+    height: 35px;
+    width: 350px;
     border-radius: 5px;
+    text-align: center;
+   
+    
     
 }
 
 .search::placeholder{
-    z-index: 1;
+    
     color: white;
     
+}
+
+.search:focus::placeholder{
+    
+    color: #171717;
+    
+}
+
+.filterButton{
+
+    border: none;
+    background-color: #171717;
+    color: white;
+
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    
+
+}
+
+.button{
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+.searchContainer{
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 50px;
+    width: 100%;
+    
+
+}
+
+.filtersContainer{
+
+
+    width: 100%;
+    height: 50px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
