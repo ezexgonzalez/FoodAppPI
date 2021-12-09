@@ -55,7 +55,7 @@ export default function Pagination(props){
                 <button className={s.button} onClick={nextPage}>Next</button>
                 <button className={s.button} onClick={end}>End</button>
             </div>
-
+            
         </div>
 
     )

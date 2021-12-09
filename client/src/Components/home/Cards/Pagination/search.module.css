@@ -1,0 +1,27 @@
+
+
+.select{
+    color: black;
+}
+
+option{
+    color: black;
+}
+
+.search{
+
+    border: none;
+    margin-left: 10px;
+    background-color: #171717;
+    border: 1px solid grey;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    
+}
+
+.search::placeholder{
+    z-index: 1;
+    color: white;
+    
+}

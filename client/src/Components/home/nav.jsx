@@ -7,6 +7,7 @@ export default function Nav (){
 
         <nav className={s.nav}>
             <img className={s.logo} src={Logo} alt="logo" />
+            <span className={s.text}>The Food App</span>
             <button className={s.button}>New Recipe</button>
 
 

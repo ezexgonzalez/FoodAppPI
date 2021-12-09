@@ -19,16 +19,38 @@ export function Cards(props) {
 
     const [recipesPage, setRecipesPage] = useState(0);
     const [search, setSearch] = useState({
-        search: ""
+        search: "",
+        type:"All"
     });
     
 
     function recipesPages(){
+
+        /* OPCION BUSQUEDA Y TIPO */
+        if(search.search.length > 0 && search.type !== "All"){
+            let filter = props.recipes.results.filter(r => r.title.includes(search.search));
+            console.log(filter);
+            filter = filter.filter(r => r.diets.includes(search.type));
+            return filter.slice(recipesPage, recipesPage + 10);
+            
+            
+        }
+
+        /* OPCION BUSQUEDA ALL */
         
-        if(search && search.search.length > 0){
+        if(search.search.length > 0 && search.type === "All"){
             
             const filter = props.recipes.results.filter(r => r.title.includes(search.search));
             
+            return filter.slice(recipesPage, recipesPage + 10);
+        }
+
+        /* OPCION SOLO POR TIPO */
+
+        if(search.search.length === 0 && search.type !== "All"){
+
+            const filter = props.recipes.results.filter(r => r.diets.includes(search.type));
+
             return filter.slice(recipesPage, recipesPage + 10);
         }
 
@@ -47,6 +69,8 @@ export function Cards(props) {
             setPages={setRecipesPage}
             search={setSearch}
             />
+        
+        
         <div className={s.cardsContainer}>
           {
 
@@ -55,6 +79,9 @@ export function Cards(props) {
                 title = {r.title}
                 image={r.image}
                 key={r.id}
+                likes={r.aggregateLikes}
+                diets={r.diets}
+                id={r.id}
               
               />
             ))

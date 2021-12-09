@@ -16,13 +16,59 @@
 }
 .card:hover{
 
+    box-shadow: 0px 0px 30px 2px #7ED957;
+}
 
-    box-shadow: 0px 0px 30px 2px #DA0037;
+.textContainer{
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.text{
+   
+    
+    font-size: 17px;
+    color: #DDDDDD;
+    cursor: pointer;
+    
+
+}
+
+
+
+
+.punctuation{
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 
 }
-.text{
-    margin: 15px;
-    color: #DDDDDD;
 
+.tick{
+
+    width: 20px;
+    height: 20px;
+
+}
+
+.typeText{
+
+    font-size: 14px;
+    margin-right: 5px;
+    color: #9b9595;
+    
+}
+
+.link{
+    text-decoration: none;
+    margin: 0px 5px 5px 5px;
 }
