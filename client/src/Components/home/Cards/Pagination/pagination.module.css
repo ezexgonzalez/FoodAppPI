@@ -5,8 +5,9 @@
     align-items: center;
     justify-content: center;
     background-color: grey;
-
-    height: 40px;
+    flex-direction: column;
+    height: 100px;
+    margin-bottom: 20px;
 
 }
 
@@ -19,8 +20,5 @@
     height: 30px;
     width: 50px;
     border-radius: 5px;
-
-
-
-
 }
+

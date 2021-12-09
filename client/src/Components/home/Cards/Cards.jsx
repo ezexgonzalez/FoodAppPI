@@ -9,19 +9,33 @@ import Pagination from "./Pagination/pagination";
 export function Cards(props) {
    
     
-
     useEffect(()=>{
         props.getRecipes();
-    },[props.getRecipes])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[props.getRecipes]);
 
-    console.log(props.recipes)
+
+    console.log(props.recipes);
 
     const [recipesPage, setRecipesPage] = useState(0);
+    const [search, setSearch] = useState({
+        search: ""
+    });
+    
 
     function recipesPages(){
+        
+        if(search && search.search.length > 0){
+            
+            const filter = props.recipes.results.filter(r => r.title.includes(search.search));
+            
+            return filter.slice(recipesPage, recipesPage + 10);
+        }
 
         return props.recipes.results.slice(recipesPage, recipesPage + 10);
+        
     }
+
 
     if(props.recipes.results){
 
@@ -31,6 +45,7 @@ export function Cards(props) {
             data={props.recipes.results}
             pages={recipesPage}
             setPages={setRecipesPage}
+            search={setSearch}
             />
         <div className={s.cardsContainer}>
           {
@@ -43,7 +58,6 @@ export function Cards(props) {
               
               />
             ))
-
           }
   
         </div>

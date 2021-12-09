@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import s from "./pagination.module.css";
+import Search from "./search";
 
 
 
@@ -7,8 +8,6 @@ export default function Pagination(props){
 
 
     const [page , setPage] = useState(1);
-
-       
     
 
     function nextPage(){
@@ -34,19 +33,28 @@ export default function Pagination(props){
         props.setPages(props.data.length - 10);
         setPage(props.data.length/10);
     }
+
+
     
-
-
 
     return(
 
         <div className={s.container}>
-            <button className={s.button} onClick={start}>Start</button>
-            <button className={s.button} onClick={previusPage}>Prev</button>
-            <span>{page}</span>
-            <button className={s.button} onClick={nextPage}>Next</button>
-            <button className={s.button} onClick={end}>End</button>
+            
+            <Search
+                setPages ={props.setPages}
+                setPage = {setPage}
+                search = {props.search}
+            
+            />
 
+            <div>
+                <button className={s.button} onClick={start}>Start</button>
+                <button className={s.button} onClick={previusPage}>Prev</button>
+                <span>{page}</span>
+                <button className={s.button} onClick={nextPage}>Next</button>
+                <button className={s.button} onClick={end}>End</button>
+            </div>
 
         </div>
 
