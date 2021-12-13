@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import s from "./card.module.css";
 import tick from "./tick.png";

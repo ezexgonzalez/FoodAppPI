@@ -15,46 +15,80 @@ export function Cards(props) {
     },[props.getRecipes]);
 
 
-    console.log(props.recipes);
+    console.log("Data",props.recipes);
 
     const [recipesPage, setRecipesPage] = useState(0);
     const [search, setSearch] = useState({
         search: "",
-        type:"All"
+        type:"All",
+        order: "-"
     });
+
+
+    function orderPages(){
+
+        if(search.order ==="asc"){
+
+            return props.recipes.results.sort((a,b)=> a.aggregateLikes - b.aggregateLikes);
+
+        }
+        if(search.order ==="des"){
+          
+            return props.recipes.results.sort((a,b)=> b.aggregateLikes - a.aggregateLikes);
+        }
+        if(search.order ==="alp"){
+           return props.recipes.results.sort((a,b)=> a.title.localeCompare(b.title));
+        
+        }
+        if(search.order === "-"){
+            return props.recipes.results 
+        }
+
+    }
+    
     
 
     function recipesPages(){
 
         /* OPCION BUSQUEDA Y TIPO */
         if(search.search.length > 0 && search.type !== "All"){
-            let filter = props.recipes.results.filter(r => r.title.includes(search.search));
-            console.log(filter);
+            let filter = orderPages().filter(r => r.title.includes(search.search));
             filter = filter.filter(r => r.diets.includes(search.type));
-            return filter.slice(recipesPage, recipesPage + 10);
             
-            
+            return {
+                page: filter.slice(recipesPage, recipesPage + 10),
+                allResults: filter
+            }
+               
         }
 
         /* OPCION BUSQUEDA ALL */
         
         if(search.search.length > 0 && search.type === "All"){
             
-            const filter = props.recipes.results.filter(r => r.title.includes(search.search));
-            
-            return filter.slice(recipesPage, recipesPage + 10);
+            const filter = orderPages().filter(r => r.title.includes(search.search));
+        
+            return {
+                page: filter.slice(recipesPage, recipesPage + 10),
+                allResults: filter
+            }
         }
 
         /* OPCION SOLO POR TIPO */
 
         if(search.search.length === 0 && search.type !== "All"){
 
-            const filter = props.recipes.results.filter(r => r.diets.includes(search.type));
-
-            return filter.slice(recipesPage, recipesPage + 10);
+            const filter = orderPages().filter(r => r.diets.includes(search.type));
+        
+            return {
+                page: filter.slice(recipesPage, recipesPage + 10),
+                allResults: filter
+            }
         }
-
-        return props.recipes.results.slice(recipesPage, recipesPage + 10);
+ 
+        return {page: orderPages().slice(recipesPage, recipesPage + 10),
+                allResults: props.recipes.results
+        }
         
     }
 
@@ -64,30 +98,32 @@ export function Cards(props) {
     return( 
         <div>
             <Pagination 
-            data={props.recipes.results}
+            data={recipesPages().allResults}
             pages={recipesPage}
             setPages={setRecipesPage}
             search={setSearch}
+            searchState={search}
+
             />
         
         
-        <div className={s.cardsContainer}>
-          {
+            <div className={s.cardsContainer}>
+            {
 
-            recipesPages().map(r => (
-              <Card
-                title = {r.title}
-                image={r.image}
-                key={r.id}
-                likes={r.aggregateLikes}
-                diets={r.diets}
-                id={r.id}
-              
-              />
-            ))
-          }
-  
-        </div>
+                recipesPages().page.map(r => (
+                <Card
+                    title = {r.title}
+                    image={r.image}
+                    key={r.id}
+                    likes={r.aggregateLikes}
+                    diets={r.diets}
+                    id={r.id}
+                
+                />
+                ))
+            }
+    
+            </div>
         </div>
     )
     }else{

@@ -24,10 +24,7 @@ export default function Search(props) {
 
     function hideFilters() {
         if (filterState) return setFilterState(false)
-
         setFilterState(true);
-
-
     }
 
 
@@ -47,6 +44,7 @@ export default function Search(props) {
             </div>
             {
                 filterState ? <div className={s.filtersContainer}>
+                    <span>Type</span>
                     <select className={s.select} onChange={(e) => searchState(e)} name="type" id="type">
                         <option value="All">All</option>
                         <option value="gluten free">Gluten Free</option>
@@ -60,18 +58,12 @@ export default function Search(props) {
                         <option value="fodmap friendly">Low FODMAP</option>
                         <option value="whole 30">Whole30</option>
                     </select>
+                    <span>Order</span>
                     <select className={s.select} onChange={(e) => searchState(e)} name="order" id="order">
-                        <option value="All">All</option>
-                        <option value="gluten free">Gluten Free</option>
-                        <option value="ketogenic">Ketogenic</option>
-                        <option value="dairy free">Dairy Free</option>
-                        <option value="lacto ovo vegetarian">Lacto-Ovo-Vegetarian</option>
-                        <option value="vegan">Vegan</option>
-                        <option value="pescatarian">Pescatarian</option>
-                        <option value="paleolithic">Paleo</option>
-                        <option value="primal">Primal</option>
-                        <option value="fodmap friendly">Low FODMAP</option>
-                        <option value="whole 30">Whole30</option>
+                        <option value="-">-</option>
+                        <option value="asc">Asc</option>
+                        <option value="des">Des</option>
+                        <option value="alp">Alphabetically</option>
                     </select>
                 </div> : ""
             }

@@ -19,7 +19,7 @@ export default function Pagination(props){
     }
 
     function previusPage(){
-        if(props.pages !== 0){
+        if(props.pages > 1){
 
             props.setPages(props.pages - 10);
             setPage(page - 1);
@@ -30,8 +30,17 @@ export default function Pagination(props){
         setPage(1);
     }
     function end(){
-        props.setPages(props.data.length - 10);
-        setPage(props.data.length/10);
+        if(props.data.length > 10) {
+            let num = parseInt(String(props.data.length)[0] + "0");
+            props.setPages(num);
+            console.log(props.data.length);
+            setPage(Math.ceil(props.data.length /10));
+
+        }else{
+            props.setPages(0);
+            setPage(1);
+        }
+        
     }
 
 
