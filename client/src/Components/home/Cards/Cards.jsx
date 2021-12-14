@@ -4,6 +4,7 @@ import { connect} from 'react-redux';
 import { getRecipes } from '../../../reducer/actions.js';
 import s from "./cards.module.css";
 import Pagination from "./Pagination/pagination";
+import Loader from '../../Loader/loader.jsx';
 
 
 export function Cards(props) {
@@ -29,19 +30,19 @@ export function Cards(props) {
 
         if(search.order ==="asc"){
 
-            return props.recipes.results.sort((a,b)=> a.aggregateLikes - b.aggregateLikes);
+            return props.recipes.sort((a,b)=> a.aggregateLikes - b.aggregateLikes);
 
         }
         if(search.order ==="des"){
           
-            return props.recipes.results.sort((a,b)=> b.aggregateLikes - a.aggregateLikes);
+            return props.recipes.sort((a,b)=> b.aggregateLikes - a.aggregateLikes);
         }
         if(search.order ==="alp"){
-           return props.recipes.results.sort((a,b)=> a.title.localeCompare(b.title));
+           return props.recipes.sort((a,b)=> a.title.localeCompare(b.title));
         
         }
         if(search.order === "-"){
-            return props.recipes.results 
+            return props.recipes
         }
 
     }
@@ -87,13 +88,13 @@ export function Cards(props) {
         }
  
         return {page: orderPages().slice(recipesPage, recipesPage + 10),
-                allResults: props.recipes.results
+                allResults: props.recipes
         }
         
     }
 
 
-    if(props.recipes.results){
+    if(props.recipes && props.recipes.length > 0){
 
     return( 
         <div>
@@ -114,10 +115,10 @@ export function Cards(props) {
                 <Card
                     title = {r.title}
                     image={r.image}
-                    key={r.id}
+                    key={r.id ? r.id : r.code}
                     likes={r.aggregateLikes}
                     diets={r.diets}
-                    id={r.id}
+                    id={r.id ? r.id : r.code}
                 
                 />
                 ))
@@ -128,9 +129,7 @@ export function Cards(props) {
     )
     }else{
         return (
-            <div>
-                Loading...
-            </div>
+            <Loader/>
         )
     }
   

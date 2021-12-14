@@ -9,18 +9,18 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    resume:{
+    summary:{
       type: DataTypes.TEXT,
       allowNull: false
     },
-    punctuation:{
+    spoonacularScore:{
       type: DataTypes.INTEGER,
     },
-    healthyLevel:{
+    healthScore:{
       type: DataTypes.STRING
     },
     steps:{

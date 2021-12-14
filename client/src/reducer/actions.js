@@ -2,7 +2,7 @@
 
 export function getRecipes() {
     return function(dispatch) {
-      return fetch("https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=d1f5548ccd4e4bfc89d5519e3065eacd")
+      return fetch("http://localhost:3001/recipes")
         .then(response => response.json())
         .then(json => {
           dispatch({ type: "GET_RECIPES", payload: json });
@@ -10,3 +10,15 @@ export function getRecipes() {
     };
   }
   
+
+export function getRecipeById(id){
+
+  return function(dispatch) {
+    return fetch(`http://localhost:3001/recipes/${id}`)
+      .then(response => response.json())
+      .then(json => {
+        dispatch({ type: "GET_RECIPE_BY_ID", payload: json });
+      });
+  };
+
+}

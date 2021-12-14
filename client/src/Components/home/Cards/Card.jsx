@@ -19,12 +19,12 @@ export default function Card(props) {
             </Link>
             <div className={s.punctuation}>
               {
-                props.diets.map(d =>(
+                props.diets ? props.diets.map(d =>(
                   <div key={d}>
                       <span  className={s.typeText}>{d}</span>
                       <img className={s.tick} src={tick} alt="tick" />
                    </div>
-                ))
+                )) : ""
               }
               
             </div>

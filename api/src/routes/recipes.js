@@ -26,12 +26,22 @@ routerRecipes.get("/:id", async (req, res, next) => {
         if (recipe) return res.json(recipe);
 
     }catch{
+        try{
+            const recipeApi = await getRecipeById(id);
         
-        const recipeApi = await getRecipeById(id);
+            if(recipeApi) return res.json(recipeApi);
+
+            res.status(404).send("recipe not found");
+        }catch(e){
+            res.status(404).json({
+                msg: "error"
+            })
+                    
+            
+        }
+        
     
-        if(recipeApi) return res.json(recipeApi);
-    
-        res.status(404).send("recipe not found");
+        
     }
     
 });
@@ -70,7 +80,10 @@ routerRecipes.get("/", async (req, res, next) => {
     }
     catch(e){
 
-        res.status(404).json(e);
+        res.status(404).json({
+            error: "No hay peticiones disponibles",
+            
+        });
 
     }
     
@@ -82,13 +95,13 @@ routerRecipes.get("/", async (req, res, next) => {
 
 routerRecipes.post("/", async (req, res, next) => {
 
-    const { name, resume, types, punctuation, healthyLevel, steps } = req.body;
+    const { title, summary, types, spoonacularScore, healthScore, steps } = req.body;
 
     const recipe = await Recipe.create({
-        name: name.toLowerCase(),
-        resume,
-        punctuation,
-        healthyLevel,
+        title: title.toLowerCase(),
+        summary,
+        spoonacularScore,
+        healthScore,
         steps
     });
 

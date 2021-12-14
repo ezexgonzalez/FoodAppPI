@@ -1,7 +1,8 @@
 
 
 const initialState= {
-   recipes: []
+   recipes: [],
+   recipeDetail: []
 }
 
 
@@ -13,6 +14,14 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             recipes: action.payload
+        }
+
+    }
+    if(action.type === "GET_RECIPE_BY_ID"){
+
+        return {
+            ...state,
+            recipeDetail: action.payload
         }
 
     }
