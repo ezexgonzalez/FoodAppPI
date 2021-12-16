@@ -107,12 +107,12 @@
 
     font-weight: 700;
     font-size: 30px;
-    color: #7ED957;
+    color: #fc76a1;
     margin-bottom: 10px;
 
 }
 b{
-    color: #7ED957;
+    color: #fc76a1;
 }
 
 .summary{
@@ -146,8 +146,8 @@ b{
 .ingredients{
 
     display: inline-block;
-   margin: 10px 10px 0px 0px;
-   color: #82E0AA;
+   margin: 10px 10px 10px 0px;
+   color: rgba(255,159,124,1);
 
 }
 
@@ -159,6 +159,6 @@ b{
 
 .textIng{
     font-size: 17px;
-    color: #D8E9A8;
+    color: rgba(187,63,221,1);
 
 }

@@ -1,16 +1,18 @@
 import s from "./nav.module.css";
 import Logo from "./Nav-Logo.png";
+import {Link} from "react-router-dom"
 
 export default function Nav (){
 
     return( 
 
         <nav className={s.nav}>
-            <img className={s.logo} src={Logo} alt="logo" />
-            <span className={s.text}>The Food App</span>
-            <button className={s.button}>New Recipe</button>
-
-
+             <Link to="/home">
+                <img className={s.logo} src={Logo} alt="logo" />
+             </Link>
+            <Link to="/recipes/create">
+                <button className={s.button}>New recipe</button>
+            </Link>
         </nav>
     )
 }

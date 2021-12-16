@@ -84,9 +84,7 @@ routerRecipes.get("/", async (req, res, next) => {
             error: "No hay peticiones disponibles",
             
         });
-
     }
-    
 
 });
 

@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 const {
-   API_KEY_1, API_KEY_2, API_KEY_3, API_KEY_4
+   API_KEY_1, API_KEY_2, API_KEY_3, API_KEY_4,API_KEY_5
   } = process.env;
 
 
@@ -9,7 +9,7 @@ module.exports = {
     getAllRecipes : function (recipes){
 
 
-       return fetch(`${API_KEY_4}`)
+       return fetch(`${API_KEY_2}`)
         .then(response => response.json())
         .then(json => {
             
@@ -19,7 +19,7 @@ module.exports = {
 
     },
     getQueryRecipes : function (recipes, query){
-        return fetch(`${API_KEY_4}`)
+        return fetch(`${API_KEY_2}`)
         .then(response => response.json())
         .then(json => {
             
@@ -34,7 +34,7 @@ module.exports = {
     getRecipeById: function(id){
 
     
-        return fetch(`${API_KEY_4}`)
+        return fetch(`${API_KEY_2}`)
         .then(response => response.json())
         .then(json => {
             

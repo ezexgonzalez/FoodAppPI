@@ -1,20 +1,16 @@
 
-
-.container{
-
-   
-    
+.container{ 
     width: 100%;
+    background-color: transparent;
     
-
 }
 
 .select{
     color: white;
     margin: 10px;
-    border: 1px solid grey;
+    border: 3px solid rgba(255, 255, 255, 0.116);
     background-color: #171717;
-    height: 30px;
+    height: 40px;
     width: 250px;
     border-radius: 5px;
 
@@ -28,71 +24,67 @@ option{
 
     border: none;
     background-color: #171717;
-    border: 1px solid grey;
-    height: 35px;
+    border: 3px solid rgba(255, 255, 255, 0.116);
+    height: 45px;
     width: 350px;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
+    font-size: 15px;
+   transition: 100ms;
+   outline: 2px solid transparent;
    
-    
     
 }
 
 .search::placeholder{
-    
     color: white;
-    
 }
-
 .search:focus::placeholder{
-    
     color: #171717;
-    
+}
+.search:hover{
+    border-color:#fc76a1;
+}
+.search:focus{
+    outline-color: #fc76a1;
+    outline-offset: 3px;
 }
 
 .filterButton{
 
     border: none;
-    background-color: #171717;
+    background-color: transparent;
     color: white;
-
-    border-radius: 5px;
+    border: 3px solid rgba(255, 255, 255, 0.116);
+    padding: 10px;
+    border-radius: 10px;
     cursor: pointer;
     position: absolute;
-    right: 10px;
+    right: 410px;
+    transition: 0.2s;
+}
+.filterButton:hover{
     
-
+    border-color:#fc76a1;
 }
 
 .button{
-
-
     display: flex;
     align-items: center;
     justify-content: center;
-    
-
 }
 
 .searchContainer{
-
-
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    height: 50px;
+    height: 80px;
     width: 100%;
-    
-
 }
 
 .filtersContainer{
-
-
     width: 100%;
     height: 50px;
-    
     display: flex;
     align-items: center;
     justify-content: center;

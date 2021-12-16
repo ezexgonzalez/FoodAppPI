@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-image: url("./pixlr-bg-result.png");
 
 }
 
@@ -24,9 +25,9 @@
     border: none;
     color: white;
     height: 50px;
-    width: 120px;
+    width: 200px;
     border-radius: 10px;
-    background-color: #7ED957;
+    background: linear-gradient(90deg, rgba(187,63,221,1) 0%, rgba(252,118,161,1) 50%, rgba(255,159,124,1) 100%);
     cursor: pointer;
     font-size: 15px;
     font-weight: 700;
