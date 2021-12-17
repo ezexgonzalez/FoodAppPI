@@ -1,6 +1,6 @@
 
 
-.container{
+.full{
 
     display: flex;
     justify-content: center;
@@ -9,9 +9,23 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    margin: auto;
     background-image: url("./pixlr-bg-result.png");
-    background-size:cover;
+    background-size:cover
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px 80px 0px 0px;
 
 }
 
@@ -95,8 +109,9 @@
 
 .button {
 
-    margin-top: 10px;
+    margin: 10px 0px 20px 0px;
     height: 60px;
+    width: 250px;
     border: none;
     border-radius: 10px;
     border-bottom: 5px ridge rgba(87, 87, 87, 0.212);
@@ -106,3 +121,56 @@
     background: linear-gradient(90deg, rgba(187,63,221,1) 0%, rgba(252,118,161,1) 50%, rgba(255,159,124,1) 100%);
 }
 
+.stepsContainer{
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.addButton{
+
+    height: 40px;
+    width: 100px;
+    background: linear-gradient(90deg, rgba(187,63,221,1) 0%, rgba(252,118,161,1) 50%, rgba(255,159,124,1) 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border-bottom: 5px ridge rgba(87, 87, 87, 0.212);
+
+}
+
+
+
+.steps{
+    background-color: rgb(41, 41, 41);
+    min-height: 70px;
+    width: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.stepNumber{
+
+    display: flex;
+    border: 2px solid rgba(255, 255, 255, 0.116);
+    height: 30px;
+    width: 90px;
+    border-radius: 5px;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;  
+
+}
+
+.close{
+    background: transparent;
+    color: #fc76a1;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
