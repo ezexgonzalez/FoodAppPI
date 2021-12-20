@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {connect} from "react-redux";
+import { createRecipe } from "../../reducer/actions";
 import s from "./newRecipe.module.css";
 
 
-
-export default function NewRecipe() {
-
-
-
-   
+ function NewRecipe(props) {
 
     const [formState, setFormState] = useState({
         title: "",
@@ -90,8 +87,9 @@ export default function NewRecipe() {
         
     }
 
-    function submmit(e) {
+    async function submmit(e) {
         e.preventDefault();
+       await props.createRecipe(formState);
     }
 
     return (
@@ -119,7 +117,7 @@ export default function NewRecipe() {
                         }
                     </div>
                     <textarea onChange={handleOnChange} className={s.textarea} placeholder="Steps" name="steps" id="" cols="30" rows="10"></textarea>
-                    <button onClick={addStep} className={s.addButton}>Add</button>
+                    <button onClick={addStep} type="button" className={s.addButton}>Add</button>
                 </div>
             </div>
             <button type="submit" className={s.button}>Create</button>
@@ -132,3 +130,6 @@ export default function NewRecipe() {
     )
 
 }
+
+
+export default connect(null, {createRecipe} )(NewRecipe)

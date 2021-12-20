@@ -10,9 +10,7 @@ export function getRecipes() {
     };
   }
   
-
 export function getRecipeById(id){
-
   return function(dispatch) {
     return fetch(`http://localhost:3001/recipes/${id}`)
       .then(response => response.json())
@@ -20,5 +18,22 @@ export function getRecipeById(id){
         dispatch({ type: "GET_RECIPE_BY_ID", payload: json });
       });
   };
+}
 
+export function createRecipe(data){
+
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      title: data.title,
+      summary: data.summary,
+      spoonacularScore: data.punctuation,
+      healthScore: data.healtyLevel
+     })
+  };
+  fetch('http://localhost:3001/recipes', requestOptions)
+    .then(response => response.json())
+    .then(data => this.setState({ msg: data.msg }));
+  
 }
