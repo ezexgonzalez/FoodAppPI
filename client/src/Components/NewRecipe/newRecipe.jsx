@@ -12,45 +12,40 @@ import s from "./newRecipe.module.css";
         summary: "",
         punctuation: 0,
         healtyLevel: 0,
-        steps: []
-    })
+        steps: [],
+        types: []
+    });
     const [stepState, setStepState] = useState({
         steps: "",
         id: [1,2,3,4,5,6,7,8,9,10]
+    });
+
+    const [typeState, setTypeState] = useState({
+        value: "",
+        types: []
     })
 
-
-
      function close(number) {
-
         stepState.id.push(number);
-
          setFormState(prevState => {
             return {
                 ...prevState,
                 steps: formState.steps.filter(step => step.number !== number)
             }
         });
-
-
         setStepState(prevState =>{
-        
             return{
                 ...prevState,
                 id: stepState.id.sort(function(a, b){return a - b})
             }
         })
-    
     }
 
     function orderSteps(){
-
         return formState.steps.sort(function(a, b){return a.number - b.number})
-       
     }
 
     function handleOnChange(e) {
-
         if (e.target.name !== "steps") {
 
             setFormState(prevState => {
@@ -66,7 +61,6 @@ import s from "./newRecipe.module.css";
                 [e.target.name]: e.target.value
             }
         })
-
     }
 
     async function addStep(e) {
@@ -81,10 +75,51 @@ import s from "./newRecipe.module.css";
                     }]
                 }
             });
-
+            setStepState(prevState => {
+                return {
+                    ...prevState,
+                    steps: ""
+                }
+            })
             stepState.id.shift()
         }
+    }
+
+    function handleOnChangeType(e){
+
+        setTypeState(prevState =>{
+            return{
+                ...prevState,
+                value: e.target.value
+            }
+        })
+    }
+
+    function addType(){
+
+        let typesNames = ["Gluten Free","Laco-Ovo-Vegetarian","Vegan","Pescatarian","Paleo","Primal","Low FODMAP","Dairy Free","Whole30"];
         
+        for (let i = 0; i < typesNames.length; i++) {
+            if(i+1 === Number(typeState.value)){
+                setTypeState(prevState =>{
+                    return{
+                        ...prevState,
+                        types: [...typeState.types,typesNames[i]]
+                    }
+                })
+            }
+        }
+    }
+
+    function typeClose(name){
+
+        setTypeState(prevState =>{
+            return {
+                ...prevState,
+                types: typeState.types.filter(t => t !== name)
+            }
+        })
+
     }
 
     async function submmit(e) {
@@ -106,6 +141,7 @@ import s from "./newRecipe.module.css";
 
                 </div>
                 <div className={s.stepsContainer}>
+            
                     <div className={s.steps}>
                         {
                             formState.steps.length > 0 ? orderSteps().map(step => (
@@ -116,8 +152,32 @@ import s from "./newRecipe.module.css";
                             )) : ""
                         }
                     </div>
-                    <textarea onChange={handleOnChange} className={s.textarea} placeholder="Steps" name="steps" id="" cols="30" rows="10"></textarea>
+                    <textarea onChange={handleOnChange} value={stepState.steps} className={s.textarea} placeholder="Steps" name="steps" id="" cols="30" rows="10"></textarea>
                     <button onClick={addStep} type="button" className={s.addButton}>Add</button>
+                </div>
+                <div className={s.typesContainer}>
+                    <div className={s.types}>
+                        {
+                            typeState.types.length > 0 ? typeState.types.map(type =>(
+                                <div className={s.typeName} key={type}>
+                                    {type}
+                                    <button type="button" onClick={()=> typeClose(type)} className={s.close}>X</button>
+                                </div>
+                            )) : ""
+                        }
+                    </div>
+                <select onChange={handleOnChangeType} className={s.options}  name="type" id="type">
+                        <option value={1}>Gluten Free</option>
+                        <option value={2}>Lacto-Ovo-Vegetarian</option>
+                        <option value={3}>Vegan</option>
+                        <option value={4}>Pescatarian</option>
+                        <option value={5}>Paleo</option>
+                        <option value={6}>Primal</option>
+                        <option value={7}>Low FODMAP</option>
+                        <option value={8}>Dairy Free</option>
+                        <option value={9}>Whole30</option>
+                    </select>
+                    <button type="button" onClick={addType} className={s.addButton}>Add</button>
                 </div>
             </div>
             <button type="submit" className={s.button}>Create</button>

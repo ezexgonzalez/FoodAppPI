@@ -43,9 +43,6 @@ export default function Pagination(props){
         
     }
 
-
-    
-
     return(
 
         <div className={s.container}>
@@ -56,7 +53,6 @@ export default function Pagination(props){
                 search = {props.search}
             
             />
-
             <div className={s.buttonsContainer}>
                 <button className={s.button} onClick={start}>Start</button>
                 <button className={s.button} onClick={previusPage}>Prev</button>
@@ -64,11 +60,8 @@ export default function Pagination(props){
                 <button className={s.button} onClick={nextPage}>Next</button>
                 <button className={s.button} onClick={end}>End</button>
             </div>
-            
         </div>
-
     )
-
 }
 
 

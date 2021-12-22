@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Recipe, Type } = require('../db.js');
+const { Recipe, Type, Step } = require('../db.js');
 const { Op } = require('sequelize');
 const {getAllRecipes, getQueryRecipes,getRecipeById} = require("../RecipesApiConection/conection");
 
@@ -99,12 +99,23 @@ routerRecipes.post("/", async (req, res, next) => {
         title: title.toLowerCase(),
         summary,
         spoonacularScore,
-        healthScore,
-        steps
+        healthScore
+    });
+
+    const stepsCreate = [];
+
+   await steps.forEach( async function(s) {
+        stepsCreate.push(await Step.create({
+            number: s.number,
+            step:s.step
+        }));
+        
     });
 
     await recipe.addTypes(types);
-
+    await recipe.addSteps(stepsCreate);
+    
+    console.log(stepsCreate.map(s => s.toJSON()));
     res.status(201).send({
         msg: "Ok"
     });

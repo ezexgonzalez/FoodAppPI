@@ -22,11 +22,7 @@ module.exports = (sequelize) => {
     },
     healthScore:{
       type: DataTypes.STRING
-    },
-    steps:{
-      type: DataTypes.TEXT
     }
-
   });
 };
 

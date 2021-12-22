@@ -13,17 +13,15 @@ routerTypes.get("/", async (req , res ,next)=>{
 
     try{
        const types = await Type.bulkCreate([
-            {name: "Gluten Free"},
-            {name: "Ketogenic"},
-            {name: "Vegetarian"},
-            {name: "Lacto-Vegetarian"},
-            {name: "Ovo-Vegetarian"},
-            {name: "Vegan"},
-            {name: "Pescetarian"},
-            {name: "Paleo"},
-            {name: "Primal"},
-            {name: "Low FODMAP"},
-            {name: "Whole30"}]);
+            {name: "gluten free"},
+            {name: "lacto ovo vegetarian"},
+            {name: "vegan"},
+            {name: "pescatarian"},
+            {name: "paleolithic"},
+            {name: "primal"},
+            {name: "fodmap friendly"},
+            {name: "dairy free"},
+            {name: "whole 30"}]);
 
 
         res.send(types);

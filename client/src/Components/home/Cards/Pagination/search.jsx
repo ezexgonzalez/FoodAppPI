@@ -7,8 +7,6 @@ export default function Search(props) {
     const [filterState, setFilterState] = useState(false);
 
     function searchState(e) {
-
-
         props.search(data => {
             props.setPages(0);
             props.setPage(1);
@@ -17,17 +15,12 @@ export default function Search(props) {
                 [e.target.name]: e.target.value
             }
         })
-
     }
-
-
 
     function hideFilters() {
         if (filterState) return setFilterState(false)
         setFilterState(true);
     }
-
-
 
     return (
         <div className={s.container}>
