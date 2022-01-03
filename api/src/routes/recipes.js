@@ -20,9 +20,11 @@ routerRecipes.get("/:id", async (req, res, next) => {
                 through: {
                     attributes: []
                 }
+            },{
+                model: Step,
             }]
         });
-
+        console.log(recipe.toJSON());
         if (recipe) return res.json(recipe);
 
     }catch{
@@ -31,17 +33,16 @@ routerRecipes.get("/:id", async (req, res, next) => {
         
             if(recipeApi) return res.json(recipeApi);
 
-            res.status(404).send("recipe not found");
+            res.status(404).json("recipe not found");
         }catch(e){
             res.status(404).json({
-                msg: "error"
+                msg: "error",
+                e: e
             })
                     
             
         }
-        
     
-        
     }
     
 });
@@ -70,7 +71,13 @@ routerRecipes.get("/", async (req, res, next) => {
         
     }else{
 
-        const recipes = await Recipe.findAll({});
+        const recipes = await Recipe.findAll({include: [{
+            model: Type,
+            attributes: ['name'],
+            through: {
+                attributes: []
+            }
+        }]});
     
         const allRecipes = await getAllRecipes(recipes);
     
@@ -82,25 +89,32 @@ routerRecipes.get("/", async (req, res, next) => {
 
         res.status(404).json({
             error: "No hay peticiones disponibles",
+            e: e
             
         });
     }
 
 });
 
-
-
-
 routerRecipes.post("/", async (req, res, next) => {
 
-    const { title, summary, types, spoonacularScore, healthScore, steps } = req.body;
+    try{
+    try{
+    const { title, summary, types, spoonacularScore, healthScore, steps, image } = req.body;
 
     const recipe = await Recipe.create({
         title: title.toLowerCase(),
         summary,
         spoonacularScore,
-        healthScore
-    });
+        healthScore,
+        image
+    });}
+    catch(e){
+        
+        return res.status(404).json({
+            msg: "Created Error"
+        })
+    }
 
     const stepsCreate = [];
 
@@ -116,9 +130,14 @@ routerRecipes.post("/", async (req, res, next) => {
     await recipe.addSteps(stepsCreate);
     
     console.log(stepsCreate.map(s => s.toJSON()));
-    res.status(201).send({
+    res.status(201).json({
         msg: "Ok"
     });
+    }catch(e){
+        res.status(404).json({
+            msg: "Error"
+        })
+    }
 
 })
 

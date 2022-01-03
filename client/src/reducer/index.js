@@ -2,7 +2,8 @@
 
 const initialState= {
    recipes: [],
-   recipeDetail: []
+   recipeDetail: [],
+    responseCreate: []
 }
 
 
@@ -22,6 +23,14 @@ function rootReducer(state = initialState, action) {
             ...state,
             recipeDetail: action.payload
         }
+    }
+    if(action.type === "CREATE_RECIPE"){
+
+        return {
+            ...state,
+            responseCreate: action.payload
+        }
+
     }
  
 

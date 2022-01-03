@@ -25,20 +25,21 @@ export function Cards(props) {
         order: "-"
     });
 
-
     function orderPages(){
+
+        let recipes = props.recipes.slice();
 
         if(search.order ==="asc"){
 
-            return props.recipes.sort((a,b)=> a.aggregateLikes - b.aggregateLikes);
+            return recipes.sort((a,b)=> a.aggregateLikes - b.aggregateLikes);
 
         }
         if(search.order ==="des"){
           
-            return props.recipes.sort((a,b)=> b.aggregateLikes - a.aggregateLikes);
+            return recipes.sort((a,b)=> b.aggregateLikes - a.aggregateLikes);
         }
         if(search.order ==="alp"){
-           return props.recipes.sort((a,b)=> a.title.localeCompare(b.title));
+           return recipes.sort((a,b)=> a.title.localeCompare(b.title));
         
         }
         if(search.order === "-"){
@@ -47,8 +48,6 @@ export function Cards(props) {
 
     }
     
-    
-
     function recipesPages(){
 
         /* OPCION BUSQUEDA Y TIPO */
@@ -86,13 +85,11 @@ export function Cards(props) {
                 allResults: filter
             }
         }
- 
+
         return {page: orderPages().slice(recipesPage, recipesPage + 10),
                 allResults: props.recipes
         }
-        
     }
-
 
     if(props.recipes && props.recipes.length > 0){
 
@@ -104,13 +101,9 @@ export function Cards(props) {
             setPages={setRecipesPage}
             search={setSearch}
             searchState={search}
-
             />
-        
-        
             <div className={s.cardsContainer}>
             {
-
                 recipesPages().page.map(r => (
                 <Card
                     title = {r.title}
@@ -118,12 +111,11 @@ export function Cards(props) {
                     key={r.id ? r.id : r.code}
                     likes={r.aggregateLikes}
                     diets={r.diets}
+                    types = {r.types}
                     id={r.id ? r.id : r.code}
-                
                 />
                 ))
             }
-    
             </div>
         </div>
     )

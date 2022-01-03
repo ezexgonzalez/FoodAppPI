@@ -7,11 +7,14 @@ import s from "./newRecipe.module.css";
 
  function NewRecipe(props) {
 
+    
+
     const [formState, setFormState] = useState({
         title: "",
         summary: "",
         punctuation: 0,
         healtyLevel: 0,
+        image: "",
         steps: [],
         types: []
     });
@@ -21,7 +24,7 @@ import s from "./newRecipe.module.css";
     });
 
     const [typeState, setTypeState] = useState({
-        value: "",
+        value: "1",
         types: []
     })
 
@@ -109,6 +112,16 @@ import s from "./newRecipe.module.css";
                 })
             }
         }
+
+        setFormState(prevState =>{
+
+            return{
+                ...prevState,
+                types: [...formState.types, Number(typeState.value)]
+            }
+
+        })
+
     }
 
     function typeClose(name){
@@ -118,8 +131,21 @@ import s from "./newRecipe.module.css";
                 ...prevState,
                 types: typeState.types.filter(t => t !== name)
             }
-        })
+        });
+        let typesNames = ["Gluten Free","Laco-Ovo-Vegetarian","Vegan","Pescatarian","Paleo","Primal","Low FODMAP","Dairy Free","Whole30"];
 
+        typesNames.forEach((n, i)=>{
+
+            if(name === n){
+
+                setFormState(prevState=>{
+                    return{
+                        ...prevState,
+                        types: formState.types.filter(t => t !== i+1)
+                    }
+                })
+            }
+        })
     }
 
     async function submmit(e) {
@@ -156,6 +182,10 @@ import s from "./newRecipe.module.css";
                     <button onClick={addStep} type="button" className={s.addButton}>Add</button>
                 </div>
                 <div className={s.typesContainer}>
+                    <div className={s.imgContainer}>
+                        <img className={s.image} src={formState.image} alt="No image" />
+                        <input className={s.input} onChange={handleOnChange} placeholder="Url Image" type="text" name="image" id="" />
+                    </div>
                     <div className={s.types}>
                         {
                             typeState.types.length > 0 ? typeState.types.map(type =>(
@@ -192,4 +222,14 @@ import s from "./newRecipe.module.css";
 }
 
 
-export default connect(null, {createRecipe} )(NewRecipe)
+function mapStateToProps(state){
+
+    return {
+
+        response: state.responseCreate
+
+    }
+}
+
+
+export default connect(mapStateToProps, {createRecipe} )(NewRecipe)

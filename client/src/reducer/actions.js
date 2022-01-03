@@ -29,11 +29,17 @@ export function createRecipe(data){
       title: data.title,
       summary: data.summary,
       spoonacularScore: data.punctuation,
-      healthScore: data.healtyLevel
+      healthScore: data.healtyLevel,
+      steps: data.steps,
+      types: data.types,
+      image: data.image
      })
   };
-  fetch('http://localhost:3001/recipes', requestOptions)
+  return function(dispatch){
+   return fetch('http://localhost:3001/recipes', requestOptions)
     .then(response => response.json())
-    .then(data => this.setState({ msg: data.msg }));
-  
+    .then(data => {
+      dispatch({ type: "CREATE_RECIPE", payload: data });
+    });
+  }
 }

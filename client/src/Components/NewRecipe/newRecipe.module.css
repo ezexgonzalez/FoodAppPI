@@ -241,3 +241,21 @@
     padding: 0px 10px 0px 10px;
 
 }
+
+.imgContainer{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+
+.image{
+
+    height: 120px;
+    width: 200px;
+    border-radius: 10px;
+
+}

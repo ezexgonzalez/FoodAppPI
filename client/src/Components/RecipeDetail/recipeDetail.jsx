@@ -27,9 +27,9 @@ function RecipeDetail(props) {
 
     console.log(props.recipe.analyzedInstructions);
 
-    let instrunctions = props.recipe.analyzedInstructions;
+    let instrunctions = props.recipe.analyzedInstructions && props.recipe.analyzedInstructions.length > 0 ? props.recipe.analyzedInstructions[0].steps : props.recipe.steps ;
     
-    if(props.recipe.analyzedInstructions){
+    if(props.recipe){
         return (
             <div>
                 <Nav />
@@ -81,13 +81,13 @@ function RecipeDetail(props) {
                         <span className={s.summary}>Instructions</span>
                         {
                             
-                            instrunctions && instrunctions.length > 0 ? instrunctions[0].steps.map(step =>(
+                            instrunctions && instrunctions.length > 0 ? instrunctions.map(step =>(
                                 <div className={s.steps} key={step.number}>
                                     <span className={s.step}>Step: {step.number}</span>
                                     <span className={s.textIng}>Ingredients</span>
                                     <div>
                                     {
-                                        step.ingredients.length > 0 ? step.ingredients.map(i =>(
+                                        step.ingredients && step.ingredients.length > 0 ? step.ingredients.map(i =>(
                                             <span key={i.id} className={s.ingredients}>{i.name}</span>
                                         )) : "-"
                                     }

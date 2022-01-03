@@ -31,10 +31,14 @@ export default function Pagination(props){
     }
     function end(){
         if(props.data.length > 10) {
-            let num = parseInt(String(props.data.length)[0] + "0");
-            props.setPages(num);
-            console.log(props.data.length);
-            setPage(Math.ceil(props.data.length /10));
+            
+            let pages = String(Math.ceil(props.data.length / 10));
+            let num = pages + "0";
+            console.log(pages);
+
+            props.setPages(parseInt(num) - 10);
+            setPage(pages);
+            
 
         }else{
             props.setPages(0);
