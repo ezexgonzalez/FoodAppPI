@@ -29,7 +29,7 @@ function RecipeDetail(props) {
 
     let instrunctions = props.recipe.analyzedInstructions && props.recipe.analyzedInstructions.length > 0 ? props.recipe.analyzedInstructions[0].steps : props.recipe.steps ;
     
-    if(props.recipe){
+    if(props.recipe.hasOwnProperty("title")){
         return (
             <div>
                 <Nav />

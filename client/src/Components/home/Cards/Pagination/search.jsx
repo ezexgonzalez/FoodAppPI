@@ -41,7 +41,6 @@ export default function Search(props) {
                     <select className={s.select} onChange={(e) => searchState(e)} name="type" id="type">
                         <option value="All">All</option>
                         <option value="gluten free">Gluten Free</option>
-                        <option value="ketogenic">Ketogenic</option>
                         <option value="dairy free">Dairy Free</option>
                         <option value="lacto ovo vegetarian">Lacto-Ovo-Vegetarian</option>
                         <option value="vegan">Vegan</option>
@@ -56,7 +55,8 @@ export default function Search(props) {
                         <option value="-">-</option>
                         <option value="asc">Asc</option>
                         <option value="des">Des</option>
-                        <option value="alp">Alphabetically</option>
+                        <option value="A-Z">A-Z</option>
+                        <option value="Z-A">Z-A</option>
                     </select>
                 </div> : ""
             }

@@ -259,3 +259,43 @@
     border-radius: 10px;
 
 }
+
+.closebutton{
+
+
+    border: 3px solid rgba(255, 255, 255, 0.116);
+    color: #fc76a1;
+    background-color: transparent;
+    height: 35px;
+    width: 60px;
+    margin-left: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.closebutton:hover{
+
+    border-color:#fc76a1;
+}
+
+
+.errorContainer{
+
+    background-color: rgb(155, 13, 13);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+.createdContainer{
+
+    background-color: rgb(18, 155, 13);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+

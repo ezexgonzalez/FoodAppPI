@@ -43,3 +43,20 @@ export function createRecipe(data){
     });
   }
 }
+
+
+export function clearArrayRecipe(){
+
+  return{
+    type: "CLEAR_ARRAY_RECIPEDETAIL",
+    payload: ""
+  }
+}
+
+export function clearArrayResponse(){
+
+  return{
+    type: "CLEAR_ARRAY_RESPONSE",
+    payload: ""
+  }
+}

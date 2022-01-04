@@ -32,6 +32,18 @@ function rootReducer(state = initialState, action) {
         }
 
     }
+    if(action.type ==="CLEAR_ARRAY_RECIPEDETAIL"){
+        return{
+            ...state,
+            recipeDetail: []
+        }
+    }
+    if(action.type === "CLEAR_ARRAY_RESPONSE"){
+        return{
+            ...state,
+            responseCreate: []
+        }
+    }
  
 
     return state;

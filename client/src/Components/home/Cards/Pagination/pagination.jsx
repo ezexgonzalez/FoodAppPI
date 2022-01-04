@@ -12,8 +12,8 @@ export default function Pagination(props){
 
     function nextPage(){
         
-        if(props.pages < props.data.length - 10){
-            props.setPages(props.pages + 10);
+        if(props.pages < props.data.length - 9){
+            props.setPages(props.pages + 9);
             setPage(page + 1);
         }
     }
@@ -21,7 +21,7 @@ export default function Pagination(props){
     function previusPage(){
         if(props.pages > 1){
 
-            props.setPages(props.pages - 10);
+            props.setPages(props.pages - 9);
             setPage(page - 1);
         }
     }
@@ -30,13 +30,13 @@ export default function Pagination(props){
         setPage(1);
     }
     function end(){
-        if(props.data.length > 10) {
+        if(props.data.length > 9) {
             
-            let pages = String(Math.ceil(props.data.length / 10));
+            let pages = String(Math.ceil(props.data.length / 9));
             let num = pages + "0";
             console.log(pages);
 
-            props.setPages(parseInt(num) - 10);
+            props.setPages(parseInt(num) - 9);
             setPage(pages);
             
 

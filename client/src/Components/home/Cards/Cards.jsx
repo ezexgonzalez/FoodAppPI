@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import Card from './Card.jsx';
 import { connect} from 'react-redux';
-import { getRecipes } from '../../../reducer/actions.js';
+import { getRecipes, clearArrayRecipe } from '../../../reducer/actions.js';
 import s from "./cards.module.css";
 import Pagination from "./Pagination/pagination";
 import Loader from '../../Loader/loader.jsx';
@@ -12,6 +12,7 @@ export function Cards(props) {
     
     useEffect(()=>{
         props.getRecipes();
+        props.clearArrayRecipe();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.getRecipes]);
 
@@ -38,10 +39,14 @@ export function Cards(props) {
           
             return recipes.sort((a,b)=> b.aggregateLikes - a.aggregateLikes);
         }
-        if(search.order ==="alp"){
+        if(search.order ==="A-Z"){
            return recipes.sort((a,b)=> a.title.localeCompare(b.title));
         
         }
+        if(search.order ==="Z-A"){
+            return recipes.sort((a,b)=> b.title.localeCompare(a.title));
+         
+         }
         if(search.order === "-"){
             return props.recipes
         }
@@ -56,7 +61,7 @@ export function Cards(props) {
             filter = filter.filter(r => r.diets.includes(search.type));
             
             return {
-                page: filter.slice(recipesPage, recipesPage + 10),
+                page: filter.slice(recipesPage, recipesPage + 9),
                 allResults: filter
             }
                
@@ -69,7 +74,7 @@ export function Cards(props) {
             const filter = orderPages().filter(r => r.title.includes(search.search));
         
             return {
-                page: filter.slice(recipesPage, recipesPage + 10),
+                page: filter.slice(recipesPage, recipesPage + 9),
                 allResults: filter
             }
         }
@@ -81,12 +86,12 @@ export function Cards(props) {
             const filter = orderPages().filter(r => r.diets.includes(search.type));
         
             return {
-                page: filter.slice(recipesPage, recipesPage + 10),
+                page: filter.slice(recipesPage, recipesPage + 9),
                 allResults: filter
             }
         }
 
-        return {page: orderPages().slice(recipesPage, recipesPage + 10),
+        return {page: orderPages().slice(recipesPage, recipesPage + 9),
                 allResults: props.recipes
         }
     }
@@ -135,6 +140,6 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {getRecipes})(Cards);
+export default connect(mapStateToProps, {getRecipes, clearArrayRecipe})(Cards);
 
 
