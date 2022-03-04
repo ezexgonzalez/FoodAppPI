@@ -33,10 +33,9 @@ export default function Pagination(props){
         if(props.data.length > 9) {
             
             let pages = String(Math.ceil(props.data.length / 9));
-            let num = pages + "0";
             console.log(pages);
 
-            props.setPages(parseInt(num) - 9);
+            props.setPages((pages - 1) * 9);
             setPage(pages);
             
 

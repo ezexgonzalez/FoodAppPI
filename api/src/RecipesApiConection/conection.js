@@ -9,7 +9,7 @@ module.exports = {
     getAllRecipes : function (recipes){
 
 
-       return fetch(`${API_KEY_1}`)
+       return fetch(`${API_KEY_3}`)
         .then(response => response.json())
         .then(json => {
             
@@ -19,7 +19,7 @@ module.exports = {
 
     },
     getQueryRecipes : function (recipes, query){
-        return fetch(`${API_KEY_1}`)
+        return fetch(`${API_KEY_3}`)
         .then(response => response.json())
         .then(json => {
             
@@ -34,11 +34,10 @@ module.exports = {
     getRecipeById: function(id){
 
     
-        return fetch(`${API_KEY_1}`)
+        return fetch(`${API_KEY_3}`)
         .then(response => response.json())
         .then(json => {
             
-            console.log(id);
             let filter = json.results.find(r => r.id === Number(id));
             return filter;
         });

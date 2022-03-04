@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import s from "./recipeDetail.module.css";
 import tick from "./tick2.png";
 import Loader from "../Loader/loader";
-
+import Footer from "../Footer/Footer";
 
 
 
@@ -51,7 +51,7 @@ function RecipeDetail(props) {
                                     }
                                 </div>
                                 <div>
-                                    <span className={s.subtitle}>Type Dish</span>
+                                    {props.recipe.dishTypes ? <span className={s.subtitle}>Type Dish</span>:""}
                                     {
                                         props.recipe.dishTypes ? props.recipe.dishTypes.map(d => (
                                             <div key={d.name ? d.name : d}>
@@ -84,21 +84,22 @@ function RecipeDetail(props) {
                             instrunctions && instrunctions.length > 0 ? instrunctions.map(step =>(
                                 <div className={s.steps} key={step.number}>
                                     <span className={s.step}>Step: {step.number}</span>
-                                    <span className={s.textIng}>Ingredients</span>
+                                    {step.ingredients && step.ingredients.length > 0 ? <span className={s.textIng}>Ingredients</span> : ""}
                                     <div>
                                     {
                                         step.ingredients && step.ingredients.length > 0 ? step.ingredients.map(i =>(
                                             <span key={i.id} className={s.ingredients}>{i.name}</span>
-                                        )) : "-"
+                                        )) : ""
                                     }
                                     </div>
-                                    <p>{step.step}</p>
+                                    <p className={s.parrafo}>{step.step}</p>
                                 </div> 
     
                             )) : ""
                         }
                     </div>                
                 </div>
+                <Footer/>
             </div>
         )
     }else{

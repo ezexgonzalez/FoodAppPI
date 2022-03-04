@@ -55,7 +55,7 @@ routerRecipes.get("/", async (req, res, next) => {
 
             const recipes = await Recipe.findAll({
                 where: {
-                    name: { [Op.substring]: name }
+                    title: { [Op.substring]: name }
                 }
             })
 
@@ -130,6 +130,7 @@ routerRecipes.post("/", async (req, res, next) => {
             msg: "Ok"
         });
     } catch (e) {
+        console.log("Error",e);
         res.status(404).json({
             msg: "Error",
             err: e

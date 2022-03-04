@@ -53,8 +53,8 @@ export default function Search(props) {
                     <span>Order</span>
                     <select className={s.select} onChange={(e) => searchState(e)} name="order" id="order">
                         <option value="-">-</option>
-                        <option value="asc">Asc</option>
-                        <option value="des">Des</option>
+                        <option value="Asc">Asc</option>
+                        <option value="Des">Des</option>
                         <option value="A-Z">A-Z</option>
                         <option value="Z-A">Z-A</option>
                     </select>

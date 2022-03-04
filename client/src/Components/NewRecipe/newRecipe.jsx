@@ -34,6 +34,7 @@ function NewRecipe(props) {
     loader: false
   });
 
+
   useEffect(()=>{
     error();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,15 +61,20 @@ function NewRecipe(props) {
     return formState.steps.sort(function (a, b) { return a.number - b.number })
   }
 
+
   function handleOnChange(e) {
     if (e.target.name !== "steps") {
-
+    
       setFormState(prevState => {
         return {
           ...prevState,
           [e.target.name]: e.target.value
         }
+
       });
+
+      
+    
     }
     setStepState(prevState => {
       return {
@@ -236,10 +242,14 @@ function NewRecipe(props) {
       <div className={s.main}>
         <div className={s.container}>
           <div className={s.form}>
-            <input value={formState.title} className={s.input} placeholder="Name" onChange={handleOnChange} name="title" type="text" />
+            <input value={formState.title} onClick={handleOnChange} className={s.input } placeholder="Name" onChange={handleOnChange} name="title" type="text" />
+            <span className={s.msg}>* Este campo es obligatorio(Solo letras)</span>
             <textarea value={formState.summary} placeholder="Summary" className={s.textarea} onChange={handleOnChange} name="summary" id="" cols="30" rows="10"></textarea>
+            <span className={s.msg}>* Este campo es obligatorio</span>
             <input value={formState.punctuation} className={s.input} placeholder="Punctuation" onChange={handleOnChange} name="punctuation" type="number" max="100" min="0" />
+             <span className={s.msg}>* Este campo es obligatorio(Numero del 0 al 100)</span>
             <input value={formState.healtyLevel} className={s.input} placeholder="Healty level" onChange={handleOnChange} name="healtyLevel" type="number" max="100" min="0" />
+            <span className={s.msg}>* Este campo es obligatorio(Numero del 0 al 100)</span>
           </div>
 
         </div>

@@ -26,18 +26,20 @@ export function Cards(props) {
         order: "-"
     });
 
+    
+
     function orderPages(){
 
         let recipes = props.recipes.slice();
 
-        if(search.order ==="asc"){
+        if(search.order ==="Asc"){
 
-            return recipes.sort((a,b)=> a.aggregateLikes - b.aggregateLikes);
+            return recipes.sort((a,b)=> a.spoonacularScore - b.spoonacularScore);
 
         }
-        if(search.order ==="des"){
+        if(search.order ==="Des"){
           
-            return recipes.sort((a,b)=> b.aggregateLikes - a.aggregateLikes);
+            return recipes.sort((a,b)=> b.spoonacularScore - a.spoonacularScore);
         }
         if(search.order ==="A-Z"){
            return recipes.sort((a,b)=> a.title.localeCompare(b.title));
@@ -50,15 +52,27 @@ export function Cards(props) {
         if(search.order === "-"){
             return props.recipes
         }
+        
+    }
 
+    function filterTypes(r){
+    
+        const array = [];
+        r.types.forEach(e => {  
+            array.push(e.name);
+        });
+
+        if(array.includes(search.type)){
+            return true
+        }
     }
     
     function recipesPages(){
 
         /* OPCION BUSQUEDA Y TIPO */
         if(search.search.length > 0 && search.type !== "All"){
-            let filter = orderPages().filter(r => r.title.includes(search.search));
-            filter = filter.filter(r => r.diets.includes(search.type));
+            let filter = orderPages().filter(r => r.title.toLowerCase().includes(search.search.toLowerCase()));
+            filter = filter.filter(r => r.diets ? r.diets.includes(search.type) : filterTypes(r));
             
             return {
                 page: filter.slice(recipesPage, recipesPage + 9),
@@ -71,8 +85,7 @@ export function Cards(props) {
         
         if(search.search.length > 0 && search.type === "All"){
             
-            const filter = orderPages().filter(r => r.title.includes(search.search));
-        
+            const filter = orderPages().filter(r => r.title.toLowerCase().includes(search.search.toLowerCase()));
             return {
                 page: filter.slice(recipesPage, recipesPage + 9),
                 allResults: filter
@@ -83,7 +96,7 @@ export function Cards(props) {
 
         if(search.search.length === 0 && search.type !== "All"){
 
-            const filter = orderPages().filter(r => r.diets.includes(search.type));
+            const filter = orderPages().filter(r => r.diets ? r.diets.includes(search.type) : r.types.map(r => r.name.includes(search.type)));
         
             return {
                 page: filter.slice(recipesPage, recipesPage + 9),
